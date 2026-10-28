@@ -1,0 +1,90 @@
+{
+  "private_dir": "C:\\Users\\YourName\\AI\\llm_dispatcher",
+  "log_dir": "F:\\AI\\local-llm-router\\logs",
+  "scheduler": {
+    "strategy": "weighted",
+    "strict_free_only": true,
+    "pre_check_balance": true,
+    "balance_cache_ttl": 300,
+    "max_attempts_per_request": 6,
+    "default_cooldown_seconds": 300,
+    "rate_cooldown_seconds": 60,
+    "history_turns": 20,
+    "warn_threshold_percent": 0.8,
+    "weighted": {
+      "quota_weight": 1.0,
+      "latency_weight": 0.4,
+      "error_weight": 1.0
+    },
+    "error_penalty": {
+      "enabled": true,
+      "consecutive_threshold": 3,
+      "penalty": 0.5
+    }
+  },
+  "task_routing": {
+    "default_type": "chat",
+    "types": ["chat", "summary", "code", "reasoning", "vision", "planning"],
+    "provider_defaults": {
+      "zhipu": ["chat", "summary", "code", "reasoning", "vision", "planning"],
+      "dashscope": ["chat", "summary", "code", "vision", "planning"],
+      "volc_ark": ["chat", "summary", "planning"],
+      "siliconflow": ["chat", "summary", "code", "planning"],
+      "gemini": ["chat", "summary", "code", "reasoning", "vision", "planning"],
+      "hunyuan": ["chat", "summary", "code", "reasoning", "planning"],
+      "groq": ["chat", "summary", "code", "reasoning", "planning"],
+      "qianfan": ["chat", "summary", "code", "vision", "planning"],
+      "kimi": ["chat", "summary", "code", "reasoning", "planning"],
+      "deepseek": ["chat", "summary", "code", "reasoning", "planning"]
+    }
+  },
+  "tool_policy": {
+    "enabled": true,
+    "read_dirs": ["F:\\AI"],
+    "write_dirs": ["F:\\AI\\local-llm-router\\sandbox"],
+    "script_dirs": ["F:\\AI\\local-llm-router\\sandbox"],
+    "cwd": "F:\\AI",
+    "read_file_max_bytes": 262144,
+    "max_output_chars": 20000,
+    "exec_timeout": 15,
+    "script_timeout": 30,
+    "approval_ttl_seconds": 600,
+    "allowed_text_extensions": [".txt", ".md", ".py", ".json", ".csv", ".log", ".html", ".htm", ".xml", ".yaml", ".yml", ".ini", ".cfg", ".conf", ".toml", ".rst", ".sql", ".js", ".ts", ".css", ".c", ".cpp", ".h", ".java", ".go", ".rs", ".ipynb", ".bat", ".cmd", ".sh"],
+    "blocked_extensions": [".exe", ".dll", ".so", ".dylib", ".zip", ".rar", ".7z", ".gz", ".tar", ".png", ".jpg", ".jpeg", ".gif", ".bmp", ".webp", ".ico", ".pdf", ".doc", ".docx", ".xls", ".xlsx", ".ppt", ".pptx", ".mp4", ".mp3", ".avi", ".wav"],
+    "tool_policies": {
+      "run_script": "approval",
+      "write_file": "auto",
+      "run_command": "auto",
+      "search_local_text": "auto",
+      "preview_csv": "auto",
+      "lint_code": "auto"
+    },
+    "max_search_results": 30,
+    "max_csv_preview_rows": 20,
+    "max_tool_iterations": 5
+  },
+  "cache": {
+    "enabled": false,
+    "ttl_seconds": 86400,
+    "dir": "C:\\Users\\YourName\\AI\\llm_dispatcher\\cache",
+    "max_entries": 5000
+  },
+  "vision": {
+    "enabled": false
+  },
+  "logging": {
+    "max_bytes": 1048576,
+    "backup_count": 3
+  },
+  "web_free_entries": [
+    {"name": "ChatGPT (OpenAI)", "desc": "OpenAI 官方网页版，免费账号可用 GPT 系列（API 收费，调度器不调用）", "url": "https://chatgpt.com/"},
+    {"name": "Claude (Anthropic)", "desc": "Anthropic 官方网页版，免费可用 Claude 系列（API 收费，调度器不调用）", "url": "https://claude.ai/"},
+    {"name": "Gemini (Google)", "desc": "Google 官方网页版，免费可用 Gemini 系列（另有免费 API 已接入调度器）", "url": "https://gemini.google.com/"},
+    {"name": "腾讯元宝 (混元)", "desc": "腾讯混元网页版，免费可用（另有免费 API 已接入调度器）", "url": "https://yuanbao.tencent.com/"},
+    {"name": "豆包 (字节)", "desc": "字节豆包网页版，免费可用（另有免费 API 已接入调度器）", "url": "https://www.doubao.com/"},
+    {"name": "Kimi", "desc": "月之暗面网页版，免费可用（API 需余额，默认锁定）", "url": "https://www.kimi.com/"},
+    {"name": "DeepSeek", "desc": "深度求索网页版，免费可用（API 无免费额度，默认锁定）", "url": "https://chat.deepseek.com/"},
+    {"name": "通义千问 (阿里)", "desc": "阿里网页版，免费可用（另有免费 API 已接入调度器）", "url": "https://tongyi.aliyun.com/"},
+    {"name": "智谱清言", "desc": "智谱网页版，免费可用（另有免费 API 已接入调度器）", "url": "https://chatglm.cn/"}
+  ]
+}

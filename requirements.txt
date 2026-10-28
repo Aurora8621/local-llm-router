@@ -1,0 +1,5 @@
+# 本地多模型免费额度调度器 - 依赖
+# 安装：conda activate workenv && pip install -r requirements.txt
+openai>=1.40.0
+gradio>=4.44.0
+requests>=2.31.0

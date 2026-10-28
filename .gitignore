@@ -1,0 +1,26 @@
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# ---- 本地运行数据与私密状态（绝不入库）----
+# 真实密钥/状态/计划/会话/缓存全部存放在项目目录之外的私密目录，
+# 这里再兜底排除一遍，防止误把本机运行产物提交。
+logs/
+*.log
+state.json
+state.json.corrupt.*
+plans.json
+sessions.json
+secrets.json
+cache/
+
+# ---- 构建产物 ----
+*.zip
+
+# ---- 备份 ----
+*.bak
+
+# ---- 系统 ----
+.DS_Store
+Thumbs.db
